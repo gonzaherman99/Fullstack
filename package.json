@@ -1,0 +1,37 @@
+{
+  "name": "fullstack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "fullstack.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=8.0.0 <11.0.0"
+  },
+  "author": "Luis Gonzalez",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^3.1.0",
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^3.0.0",
+    "connect-mongodb-session": "^2.2.0",
+    "cookie-parser": "^1.4.4",
+    "crypto": "^1.0.1",
+    "debug": "^4.1.1",
+    "dotenv": "^8.0.0",
+    "ejs": "^2.6.2",
+    "express": "^4.16.4",
+    "express-session": "^1.16.2",
+    "helmet": "^3.21.1",
+    "mongoose": "^5.6.1",
+    "mongoose-encryption": "^2.0.2",
+    "node-fetch": "^2.6.0",
+    "nodemailer": "^6.2.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^5.0.1",
+    "path": "^0.12.7"
+  }
+}
