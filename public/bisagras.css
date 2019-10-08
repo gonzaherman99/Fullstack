@@ -6,6 +6,12 @@ body {
     font-family: 'Heebo', sans-serif;
 }
 
+a.navbar-brand {
+     font-size: 3rem;
+    top: -2%;
+	color: #1526D5 !important;
+	font-weight: 700;
+}
 /**NAV**/
 .navbar {
     background-color: #44bd32;
@@ -22,8 +28,19 @@ body {
 input.form-control.mr-sm-2 {
     padding: 0 60px 0 5px;
 }
-.regis, .fa-shopping-cart {
-    margin-left: 1%;
+.regis {
+     position: absolute;
+    top: 20%;
+    left: 90%;
+}
+.signin {
+    top: 20%;
+     left: 80%;
+    position: absolute;
+}
+.cart {
+    position: absolute;
+    margin-left: 38%;
 }
 .fa-shopping-cart:hover {
     color: white;
@@ -67,7 +84,7 @@ a.nav-link {
       text-align: center;
 }
 .sidebar {
-    margin-top: 45%;
+    margin-top: 32%;
 }
 .sidebar a {
   padding: 4px 4px 4px 4px;
@@ -247,21 +264,21 @@ button.btn-warning {
         top: 0;
         left: 0;
         width: 100%;
-        height: 200px;
+        height: 150px;
     }
     .form-inline {
-        top: 70%;
+        top: 60%;
         left: -25%;
         position: absolute;
         display: inline !important;z-index: 2;
     }
     .btn-outline-dark {
         margin-left: 5%;
-        top: 5;
+        top: -5;
         position: absolute;
     }
     .fa-shopping-cart {
-        top: 150%;
+        top: 125%;
         right: 15%;
         position: absolute;
    }
@@ -270,14 +287,14 @@ button.btn-warning {
         top: 0;
         left: 0;
         width: 100%;  
-        height: 100px;
+        height: 80px;
         z-index: 1;
     }
     .nav {
         margin: 2% 0;
         transform: translateY(0);
     }
-    img.navimg {
+    .navimg {
         position: absolute;
         top: 10%;
         z-index: 1;
@@ -288,9 +305,8 @@ button.btn-warning {
     .cerrar {
         margin-right: 5% !important;
     }
-   
     #precios {
-        margin-top: 200px;
+        margin-top: 100px;
         margin-left: 0%;
     }
     .card {
@@ -363,24 +379,24 @@ button.btn-warning {
 }
 
 /* The button used to open the sidebar */
-.openbtn {
+.navbar-toggler {
   position: absolute;
-  top: 5;
+  top: 20% !important ;
   right: 25px;
   margin-left: 50px;
-  border: 4px solid black !important;
+  border: 2px solid black !important;
  background-color: #44bd32;
 }
 span.navbar-toggler-icon {
     color: black !important;
+     margin-right: 2% !important;
     height: 2em;
-    padding-top: 5% !important;margin-bottom:  -5% !important;
-    width: 4em;
+    width: 2em;
 }
 div.color {
-    width: 70px;
-    height: 10px;
-    margin: 12px auto;
+     width: 35px;
+    height: 5px;
+    margin: 6px auto;
     background-color: black;
 }
 
@@ -427,12 +443,9 @@ div.color {
         z-index: 1;
         position: absolute;
     }
-    button.openbtn {
-      margin-top: -2%;
-      margin-left: 37%;
-        transition: 0s;
-        font-size: 1em;
-        padding-bottom: 2%;
+   .navbar-toggler {
+  position: absolute;
+  top: 20% !important ;
     }
     .nav-item {
         padding: 5% 0;
@@ -442,7 +455,7 @@ div.color {
         margin-left: 14%;
      }
     #precios {
-        margin-top: 200px;
+        margin-top: 100px;
         margin-left: 0%;
     }
     .card {
@@ -493,7 +506,7 @@ input[type=search] {
      padding-right: 1px !important;   
     }
     #precios {
-        margin-top: 49%;
+        margin-top: 47%;
     }
     input[type=number] {
     display: block;

@@ -16,6 +16,8 @@
         <form class="form-inline  my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
       <button class="btn btn-outline-dark my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+             <i class="fas fa-shopping-cart fa-lg fa-2x cart"></i>
+            <a type="singin" href="/login"><button class="btn btn-dark signin">Iniciar Sesion / Registrarse </button></a>
          </form>
 
     </div>
@@ -24,12 +26,10 @@
     
     <section id="nav">
     
-    <a href="/"><img src="images/tecaf.jpg" class="navimg" width="145.2" height="102.8"></a>
+     <a class="navbar-brand navimg" href="#">TECAF</a>
 
   <div id="mySidebar" class="sidebar">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <a type="singin" href="/login"><button class="btn btn-dark signin">Iniciar Sesion</button></a>
-      <a type="singin" href="/registrate1"><button class="btn btn-dark regis"> Registrarse</button></a>
   <a class="nav-link" href="#">INICIO</a>
   <a class="nav-link" href="/seccion-bisagras">BISAGRAS</a>
   <a  class="nav-link" href="/seccion-hule">ACCESORIOS DE HULE</a>
@@ -39,14 +39,12 @@
 </div>
 
 <div id="main">
-    <button class="openbtn" onclick="openNav()" onclick="dissa();">
-        <div class="color"><span class="navbar-toggler-icon"></span></div>
-        <div class="color"><span class="navbar-toggler-icon"></span></div>
-        <div class="color"><span class="navbar-toggler-icon"></span></div>
+    <button class="navbar-toggler openbtn"  type="button" data-toggle="collapse" aria-controls="navlist" aria-expanded="false" aria-label="Toggle navigation" onclick="openNav()" onclick="dissa();">
+        <span class="navbar-toggler-icon">
+             <div class="color"></div>
+                    <div class="color"></div>
+                    <div class="color"></div>
+        </span>
     </button> 
 </div>
-        
-      
-        
-        <i class="fas fa-shopping-cart fa-lg fa-2x cart"></i>
     </section>

@@ -20,12 +20,9 @@ body {
 input.form-control.mr-sm-2 {
     padding: 0 60px 0 5px;
 }
-.signin {
-    margin-left: 20%;  
-}
-
-.regis, .fa-shopping-cart {
-    margin-left: 1%;
+.fa-shopping-cart {
+    position: absolute;
+    top: 5%;
 }
 .fa-shopping-cart:hover {
     color: white;
