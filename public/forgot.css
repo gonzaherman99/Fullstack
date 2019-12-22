@@ -7,7 +7,7 @@ body {
 
 /* NAVBAR */
 .navbar {
-    background-color: #79E712;
+    background-color: #44bd32;
 }
 a.navbar-brand {
     font-size: 3rem;
@@ -99,7 +99,7 @@ small {
     font-weight: 700;
 }
 #login {
-	background-color: #79E712;
+	background-color:#44bd32;
 	padding: 4% 2%;
 }
 

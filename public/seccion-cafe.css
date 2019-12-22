@@ -16,15 +16,24 @@ body {
      margin-left: 37%;
      padding-top: 5px;
      padding-bottom: 5px;
+    -ms-margin-left: 34%;
 }
 input.form-control.mr-sm-2 {
     padding: 0 60px 0 5px;
 }
-.signin {
-    margin-left: 20%;
+.regis {
+     position: absolute;
+    top: 20%;
+    left: 90%;
 }
-.regis, .fa-shopping-cart {
-    margin-left: 1%;
+.signin {
+    top: 20%;
+     left: 80%;
+    position: absolute;
+}
+.cart {
+    position: absolute;
+    margin-left: 38%;
 }
 .fa-shopping-cart:hover {
     color: white;
@@ -54,6 +63,13 @@ input.form-control.mr-sm-2 {
 .nav-item {
     padding: 10% 0;
 }
+
+.closebtn {
+    visibility: hidden;
+}
+.openbtn {
+    visibility: hidden;
+}
 a.nav-link {
     text-decoration: none;
       text-rendering: geometricPrecision;
@@ -68,6 +84,118 @@ a.nav-link {
 }
 
 .sidebar {
+  margin-top: 40%;
+}
+
+/* The sidebar links */
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #2f3640;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidebar a:hover {
+  color: #dcdde1;
+   font-weight: 700;
+    transform: scale(1.2);
+}
+
+
+/**PRECIOS**/
+
+
+#precios {
+    z-index: 0;
+    margin-left: 15%;
+    padding-top: 5%;
+    padding-bottom: 2%;
+    background-color:#2f3640;
+}
+
+.card {
+    margin: 10%;
+    text-align: center;
+    border: 2px solid #79E712 !important;
+}
+.card:hover {
+    filter:brightness(70%);
+    transition: 1s;
+}
+
+/* FOOTER */
+
+#footer {
+    padding: 3%;
+    margin-left: 20%;
+    text-align: center;
+}
+.fo {
+    padding: .5%;
+}
+
+
+@media only screen and (max-width: 1024px) {
+    .navbar {
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 200px;
+        z-index: 1;
+    }
+    .form-inline {
+        margin-left: 23%;
+        position: absolute;
+        display: inline !important;
+    }
+    input.form-control {
+        margin-top: -15%;
+    }
+    button.btn-outline-dark {
+        margin-top: -15% !important;
+    }
+    #nav {
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        width: 100%;  
+        height: 80px;
+        z-index: 1;
+        margin-top: 200px;
+    }
+    .nav {
+        margin: 2% 0;
+        transform: translateY(0);
+    }
+    .navimg {
+        margin-top: -17% !important;
+        z-index: 1;
+        position: absolute;
+    }
+    .nav-item {
+        padding: 5% 0;
+    }
+    .signin {
+        margin-left: 34%;
+        margin-top: -9%;
+    }
+    .regis {
+         margin-left: 79%;
+         margin-top: -9%;
+    }
+    .cart {
+        margin-left: 123%;
+        margin-top: -5%;
+    }
+.closebtn {
+    visibility: visible;
+}
+.sidebar {
+  margin-top: 0;
   height: 100%; /* 100% Full-height */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
@@ -108,19 +236,20 @@ a.nav-link {
 
 /* The button used to open the sidebar */
 .openbtn {
+  visibility: visible;
   cursor: pointer;
   background-color: #0C6FAB;
   color: white;
   border: none;
-  margin-top: 175%;
-  margin-left: 3%;
+  margin-top: -8%;
+  margin-left: 37% !important;
   font-family: Heebo !important;
   border-radius: 10px;
   vertical-align: middle;
   font-size: 1.1em;
   font-weight: 700;
-  padding: 3% 4% 0 4%;
-    transition: 0.5s;
+  padding: 2% 4% 2% 4%;
+    transition: 1s;
 }
 .openbtn i {
     display: block;
@@ -133,89 +262,14 @@ a.nav-link {
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
-  transition: margin-left .5s; /* If you want a transition effect */
+  transition: margin-left 1s; /* If you want a transition effect */
   padding: 20px;
 }
-/**PRECIOS**/
 
-
-#precios {
-    z-index: 0;
-    margin-left: 15%;
-    padding-top: 5%;
-    padding-bottom: 2%;
-    background-color:#2f3640;
-}
-
-.card {
-    margin: 10%;
-    text-align: center;
-    border: 2px solid #79E712 !important;
-}
-.card:hover {
-    filter:brightness(70%);
-    transition: 1s;
-}
-
-/* FOOTER */
-
-#footer {
-    padding: 3%;
-    margin-left: 20%;
-    text-align: center;
-}
-.fo {
-    padding: .5%;
-}
-
-
-@media only screen and (max-width: 815px) {
-    .navbar {
-        position: absolute !important;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 200px;
-        z-index: 1;
-    }
-    .form-inline {
-        margin-left: 37%;
-        position: relative;
-        display: inline !important;
-    }
-    #nav {
-        position: absolute !important;
-        top: 0;
-        left: 0;
-        width: 100%;  
-        height: 200px;
-        z-index: 1;
-        margin-top: 200px;
-    }
-    .nav {
-        margin: 2% 0;
-        transform: translateY(0);
-    }
-    .navimg {
-        margin-top: -40% !important;
-        z-index: 1;
-        position: absolute;
-    }
-    .nav-item {
-        padding: 5% 0;
-    }
-    .signin {
-        margin-left: 15%;
-    }
-    .regis, .fa-shopping-cart {
-    margin-left: 0;
-    }
-    .fa-shopping-cart {
-        margin-right: 15%;
-    }
     #precios {
-        margin-top: 550px;
+        margin-top: 250px;
         margin-left: 0%;
+        padding-top: 17%;
     }
     .card {
         width: 70%;
@@ -226,93 +280,324 @@ a.nav-link {
         width: 315.09px;
         height: 306.92px;
     }
+    div.col-md-4 {
+        padding: 0;
+        margin: 0;
+    }
+     input[type=number] {
+        display: block !important;
+        margin-left: -5%;
+         margin-right: 10%;
+     }
+     h5.cantidad {
+        margin-right: 38%;
+     }
+    .precios {
+        text-align: center !important;
+        margin-left: 13%;
+        margin-top: 0% !important;
+        padding: 5%;
+    }
+    .desc {
+        display: block;
+        margin-right: 20%;
+        margin-left: 5%;
+        text-align: center !important;
+        margin-top: 4%;
+    }
+    h5#text {
+        text-align: center ;
+        margin: 6% 0 6% 0;
+    }
+    form#btns {
+        display: block;
+        margin-right: 5%;
+        margin-top: -3%;
+    }
+    #footer {
+    padding: 7%;
+    margin-left: 0%;
+    text-align: center;
+}
+}
+@media only screen and (max-width: 780px) {
+     #nav {
+        height: 120px;
+    }
+    .navimg {
+        margin-top: -23% !important;
+        margin-left: 5%;
+    }
+    .form-inline {
+         margin-left: 40%;
+        margin-top: -1s%;
+    }
+    .signin {
+        margin-left: -150%;
+        margin-top: 20%;
+    }
+    .regis {
+    margin-left: -85%;
+         margin-top: 20%;
+    }
+    .cart {
+        margin-left: -17%;
+        margin-top: 22%;
+        margin-right: 10%;
+    }
+    .openbtn {
+        margin-top: -1% !important;
+        margin-left: 37% !important;
+    }
+    #precios {
+        margin-top: 260px;
+        margin-left: 0%;
+        padding-top: 13%;
+        padding-bottom: 9%;
+    }
+    .card {
+        width: 70%;
+        display: block;
+        margin: 5% auto;
+    }
+    .precios {
+        margin-top: 3% !important;
+        margin-left: -4% !important;
+    }
+    .desc {
+        display: block;
+        margin-right: 5%;
+        margin-left: 5%;
+        text-align: center !important;
+        margin-top: 4%;
+    }
+     input[type=number] {
+        display: block !important;
+        margin-left: -15%;
+     }
+    form#btns {
+        width: 100%;
+        margin: 16px 20px 0 0;
+        margin-right: 5% !important;
+    }
      #footer {
+    padding: 8%;
+    margin-left: 0%;
+    text-align: center;
+}
+}
+
+@media only screen and (max-width: 690px) {
+ .navimg {
+        margin-top: -27% !important;
+        margin-left: 5%;
+    }
+    .form-inline {
+         margin-left: 45%;
+        margin-top: -7%;
+    }
+    .signin {
+        margin-left: -150%;
+        margin-top: 30%;
+    }
+    .regis {
+    margin-left: -85%;
+         margin-top: 30%;
+    }
+    .cart {
+        margin-left: -17%;
+        margin-top: 34%;
+        margin-right: 10%;
+    }
+     div.col-md-4 {
+        padding: 15px;
+        margin: 0;
+    }
+     #precios {
+        margin-top: 200px;
+        margin-left: 0%;
+    }
+     input[type=number] {
+        display: block !important;
+        margin-left: 10%;
+     }
+    .openbtn {
+        margin-top: -3% !important;
+        margin-left: 33% !important;
+    }
+}
+@media only screen and (max-width: 580px) {
+    .navimg {
+        margin-top: -40% !important;
+        margin-left: 5%;
+    }
+    .form-inline {
+         margin-left: 40%;
+        margin-top: -5%;
+    }
+     button.btn-outline-dark {
+        margin-top: 2% !important;
+    }
+    .signin {
+        margin-left: -150%;
+        margin-top: 25%;
+    }
+    .regis {
+    margin-left: -85%;
+         margin-top: 25%;
+    }
+    .cart {
+        margin-left: 60%;
+        margin-top: 28%;
+        margin-right: 10%;
+    }
+    .openbtn {
+        margin-top: -7% !important;
+        margin-left: 33% !important;
+    }
+    input[type=number] {
+        display: block !important;
+        margin-left: 4%;
+     }
+    #nav {
+        height: 90px;
+    }
+     #precios {
+        margin-top: 250px;
+        margin-left: 0%;
+    }
+    .precios {
+        margin-top: -2% !important;
+        margin-left: auto !important;
+    }
+}
+@media only screen and (max-width: 425px) {
+    
+    .navimg {
+        width: 102.5px;
+        height: 81px;
+        margin-top: -43% !important;
+        margin-left: 5%;
+    }
+     #nav {
+        height: 97px;
+    }
+    .form-inline {
+        margin-top: -1%;
+        margin-left: 30%;
+    }
+    button.btn-outline-dark {
+        margin-top: 5% !important;
+    }
+    .signin {
+        margin-left: -130%;
+        margin-top: 25%;
+    }
+    .regis {
+    margin-left: -75%;
+         margin-top: 25%;
+    }
+    .cart {
+        margin-left: 60%;
+        margin-top: 30%;
+        margin-right: 10%;
+    }
+    .openbtn {
+        margin-top: -7% !important;
+        margin-left: 28% !important;
+    }
+    .precios {
+        margin-top: -3% !important;
+        margin-left: auto !important;
+    }
+    input[type=number] {
+    display: block;
+    margin-left: -1%;
+     }
+}
+@media only screen and (max-width: 375px) {
+  .navimg {
+        width: 102.5px;
+        height: 81px;
+        margin-top: -48% !important;
+        margin-left: 3%;
+    }
+    .form-inline {
+        margin-top: -3%;
+        margin-left: 30%;
+    }
+    #precios {
+        margin-top: 260px;
+    }
+    .openbtn {
+        margin-top: -10% !important;
+        margin-left: 27% !important;
+    }
+    #nav {
+        height: 80px;
+    }
+input[type=number] {
+    display: block;
+    margin-left: -5%;
+     }
+    .card {
+        width: 70%;
         display: block;
         margin: 3% auto;
     }
+    #footer {
+    padding: 7%;
+    margin-left: 0%;
+    text-align: center;
+}
+}
+@media only screen and (max-width: 330px) {
+     .navimg {
+        width: 102.5px;
+        height: 71px;
+        margin-top: -55% !important;
+        margin-left: 0;
+    }
+    #precios {
+        margin-top: 270px;
+    }
+    input.form-control {
+        padding-right: -4% !important;
+    }
+     .form-inline {
+        margin-top: -5%;
+    }
+    .openbtn {
+         margin-top: -15% !important;
+        margin-left: 23% !important;
+    }
+    .signin {
+        margin-left: -130%;
+        margin-top: 30%;
+    }
+    .regis {
+    margin-left: -75%;
+         margin-top: 30%;
+    }
+    .cart {
+        margin-top: 34%;
+        margin-left: 57%;
+    }
+    .card-img-top {
+        width: 152.66px;
+        height: 204.62px;
+    }
+    #nav {
+        height: 70px;
+    }
+    input[type=number] {
+    display: block;
+    margin-left: -12%;
+     }
 }
 @supports (-ms-ime-align: auto) {
-     #precios {
-    z-index: 0;
-    margin-left: 15%;
-    padding-top: 5%;
-    padding-bottom: 2%;
-    background-color: #313331;
-}
-
-.card {
-    margin: 10%;
-    text-align: center;
-    border: 2px solid #79E712 !important;
-}
-.card:hover {
-    filter:brightness(70%);
-    transition: 1s;
-}
-
+  
     .form-inline {
         margin-left: 34%;
     }
-@media only screen and (max-width: 815px) {
-    .navbar {
-        position: absolute !important;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 200px;
-        z-index: 1;
-    }
-    .form-inline {
-        margin-left: 37%;
-        position: relative;
-        display: inline !important;
-    }
-    #nav {
-        position: absolute !important;
-        top: 0;
-        left: 0;
-        width: 100%;  
-        height: 200px;
-        z-index: 1;
-        margin-top: 200px;
-    }
-    .nav {
-        margin: 2% 0;
-        transform: translateY(0);
-    }
-    .navimg {
-        margin-top: -40% !important;
-        z-index: 1;
-        position: absolute;
-    }
-    .nav-item {
-        padding: 5% 0;
-    }
-    .signin {
-        margin-left: 15%;
-    }
-    .regis, .fa-shopping-cart {
-    margin-left: 0;
-    }
-    .fa-shopping-cart {
-        margin-right: 15%;
-    }
-    #precios {
-        margin-top: 550px;
-        margin-left: 0%;
-    }
-    .card {
-        width: 70%;
-        display: block;
-        margin: 3% auto;
-    }
-    .card-img-top {
-        width: 315.09px;
-        height: 306.92px;
-    }
-     #footer {
-        display: block;
-        margin: 3% auto;
-    }
-}
 }

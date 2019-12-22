@@ -13,7 +13,7 @@ body {
     z-index: 1;
 }
 .form-inline {
-     margin-left: 37%;
+     margin-left: 35%;
      padding-top: 5px;
      padding-bottom: 5px;
 }
@@ -63,6 +63,12 @@ a.orden {
 .nav-item {
     padding: 10% 0;
 }
+.closebtn {
+    visibility: hidden;
+}
+.openbtn {
+    visibility: hidden;
+}
 a.nav-link {
     text-decoration: none;
       text-rendering: geometricPrecision;
@@ -77,6 +83,108 @@ a.nav-link {
 }
 
 .sidebar {
+  margin-top: 40%;
+}
+
+/* The sidebar links */
+.sidebar a {
+  padding: 8px 8px 8px 20px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #2f3640;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidebar a:hover {
+  color: #dcdde1;
+   font-weight: 700;
+    transform: scale(1.1);
+}
+
+
+/**PRECIOS**/
+
+
+#precios {
+    z-index: 0;
+    margin-left: 15%;
+    padding-top: 6%;
+    background-color: #2f3640;
+}
+
+.card {
+    margin: 5%;
+    text-align: center;
+    border: 2px solid #44bd32 !important;
+}
+.card:hover {
+    filter:brightness(70%);
+    transition: 1s;
+}
+
+/* FOOTER */
+
+#footer {
+    padding: 3%;
+    margin-left: 20%;
+    text-align: center;
+}
+.fo {
+    padding: .5%;
+}
+
+
+@media only screen and (max-width: 1024px) {
+    .navbar {
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 200px;
+        z-index: 1;
+    }
+    .form-inline {
+        margin-left: 27%;
+        position: relative;
+        display: inline !important;
+    }
+    a.orden {
+        margin-right: 10px;
+        margin-left: 80%;
+        margin-top: 0;
+    }
+    a.cerrar {
+        margin-left: 50px;
+    }
+    #nav {
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        width: 100%;  
+        height: 100px;
+        z-index: 1;
+        margin-top: 200px;
+    }
+    .nav {
+        margin: 2% 0;
+        transform: translateY(0);
+    }
+    .navimg {
+        margin-top: -15% !important;
+        z-index: 1;
+        position: absolute;
+    }
+    /* Position and style the close button (top right corner) */
+.closebtn {
+    visibility: visible;
+}
+.openbtn {
+    visibility: visible;
+}
+.sidebar {
+  margin-top: 0;
   height: 100%; /* 100% Full-height */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
@@ -117,18 +225,19 @@ a.nav-link {
 
 /* The button used to open the sidebar */
 .openbtn {
+  visibility: visible;
   cursor: pointer;
   background-color: #0C6FAB;
   color: white;
   border: none;
-  margin-top: 175%;
-  margin-left: 3%;
+  margin-top: -4% !important;
+  margin-left: 37% !important;
   font-family: Heebo !important;
   border-radius: 10px;
   vertical-align: middle;
   font-size: 1.1em;
   font-weight: 700;
-  padding: 3% 4% 0 4%;
+  padding: 2% 4% 2% 4%;
     transition: 1s;
 }
 .openbtn i {
@@ -146,79 +255,6 @@ a.nav-link {
   padding: 20px;
 }
 
-
-/**PRECIOS**/
-
-
-#precios {
-    z-index: 0;
-    margin-left: 15%;
-    padding-top: 6%;
-    background-color: #2f3640;
-}
-
-.card {
-    margin: 5%;
-    text-align: center;
-    border: 2px solid #44bd32 !important;
-}
-.card:hover {
-    filter:brightness(70%);
-    transition: 1s;
-}
-
-/* FOOTER */
-
-#footer {
-    padding: 3%;
-    margin-left: 20%;
-    text-align: center;
-}
-.fo {
-    padding: .5%;
-}
-
-
-@media only screen and (max-width: 815px) {
-    .navbar {
-        position: absolute !important;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 200px;
-        z-index: 1;
-    }
-    .form-inline {
-        margin-left: 37%;
-        position: relative;
-        display: inline !important;
-    }
-    a.orden {
-        margin-right: 10px;
-        margin-left: 300px;
-        margin-top: 55px;
-    }
-    a.cerrar {
-        margin-left: 50px;
-    }
-    #nav {
-        position: absolute !important;
-        top: 0;
-        left: 0;
-        width: 100%;  
-        height: 100px;
-        z-index: 1;
-        margin-top: 200px;
-    }
-    .nav {
-        margin: 2% 0;
-        transform: translateY(0);
-    }
-    .navimg {
-        margin-top: -40% !important;
-        z-index: 1;
-        position: absolute;
-    }
     button.openbtn {
       margin-top: -2%;
       margin-left: 30%;
@@ -291,7 +327,7 @@ a.nav-link {
         position: absolute;
     }
     button.openbtn {
-      margin-top: -2%;
+      margin-top: -2% !important ;
       margin-left: 37%;
         transition: 0s;
         font-size: 1em;
@@ -307,7 +343,9 @@ a.nav-link {
     .card {
         width: 70%;
         display: block;
-        margin: 5% auto;
+        margin-top: 10%;
+        margin-left:  auto;
+        margin-right: auto;
     }
      #footer {
     padding: 8%;
@@ -347,9 +385,9 @@ a.nav-link {
         margin: 3% auto;
     }
 }
-@media only screen and (max-width: 415px) {
+@media only screen and (max-width: 425px) {
     #precios {
-        margin-top: 79%;
+        margin-top: 77%;
     }
     img.navimg {
         width: 102.5px;

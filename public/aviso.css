@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Heebo:400,500,700');
+
+#body {
+    background-color:  #20BA08;
+    text-align: center;
+    padding: 10%;
+}
+
+h3 {
+    font-family: Heebo;
+    color: #2f3640;
+    padding: 2%;
+}
+ a {
+     color: blue !important;
+}
+#footer {
+    padding: 5%;
+    margin-left: 0%;
+    text-align: center;
+}

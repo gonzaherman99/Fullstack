@@ -56,7 +56,20 @@ a.nav-link:hover {
     font-weight: 700;
     transform: scale(1.2);
 }
-
+.navbar-toggler {
+    border: 2px solid black !important;
+}
+span.navbar-toggler-icon {
+    color: black !important;
+    height: 2em;
+    width: 2em;
+}
+div.color {
+    width: 35px;
+    height: 5px;
+    margin: 6px auto;
+    background-color: black;
+}
 /*SIGN IN*/
 
 .form-group {
@@ -119,7 +132,13 @@ h5#message {
     color: red !important;
     color: rgba(0,0,0,0.7);
 }
-
+a.olvidar {
+    color: blue;
+}
+a.olvidar:hover {
+    text-decoration: none;
+    color: blue;
+}
 /*FOOTER*/
 #footer {
 	padding: 2%;

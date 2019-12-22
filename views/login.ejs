@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-	<meta name="language" content="Spanish">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>TECAF / Iniciar Sesion</title>
         
         <link href="/signin.css" rel="stylesheet">
@@ -28,7 +28,11 @@
                 <nav class="navbar navbar-l navbar-expand-lg">
             <a class="navbar-brand" href="#">TECAF</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navlist" aria-controls="navlist" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon">
+                    <div class="color"></div>
+                    <div class="color"></div>
+                    <div class="color"></div>
+                </span>
             </button>
             
             <form class="form-inline" onSubmit="emailc('first');">
@@ -90,8 +94,7 @@
              
          </div>
          <div class="form-group form-check">
-           <input type="checkbox" class="form-check-input" id="exampleCheck1">
-         <label class="form-check-label" for="exampleCheck1">Mantener Sesion Abierta</label>
+         
         </div>
         <label class="notice">Si no tienes cuenta has click en Registrate!</label>
         <button type="submit" class="btn btn-primary submit">Iniciar Sesion</button>

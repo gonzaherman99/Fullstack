@@ -6,6 +6,7 @@ body {
 }
 
 /**NAVBAR**/
+
 .navbar {
     background-color: #44bd32;
     position: fixed !important;
@@ -16,15 +17,24 @@ body {
      margin-left: 37%;
      padding-top: 5px;
      padding-bottom: 5px;
+    -ms-margin-left: 34%;
 }
 input.form-control.mr-sm-2 {
     padding: 0 60px 0 5px;
 }
-.signin {
-    margin-left: 20%;
+.regis {
+     position: absolute;
+    top: 20%;
+    left: 90%;
 }
-.regis, .fa-shopping-cart {
-    margin-left: 1%;
+.signin {
+    top: 20%;
+     left: 80%;
+    position: absolute;
+}
+.cart {
+    position: absolute;
+    margin-left: 38%;
 }
 .fa-shopping-cart:hover {
     color: white;
@@ -54,6 +64,12 @@ input.form-control.mr-sm-2 {
 .nav-item {
     padding: 10% 0;
 }
+.closebtn {
+    visibility: hidden;
+}
+.openbtn {
+    visibility: hidden;
+}
 a.nav-link {
     text-decoration: none;
       text-rendering: geometricPrecision;
@@ -68,16 +84,7 @@ a.nav-link {
 }
 
 .sidebar {
-  height: 100%; /* 100% Full-height */
-  width: 0; /* 0 width - change this with JavaScript */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Stay on top */
-  top: 0;
-  left: 0;
-  background-color:  #44bd32; /* Black*/
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
-  transition: 0.7s; /* 0.5 second transition effect to slide in the sidebar */
+margin-top: 40%;
 }
 
 /* The sidebar links */
@@ -90,52 +97,13 @@ a.nav-link {
   transition: 0.3s;
 }
 
-/* When you mouse over the navigation links, change their color */
+
 .sidebar a:hover {
   color: #dcdde1;
-   font-weight: 700;
-    transform: scale(1.2);
+   font-weight: 500;
+    transform: scale(1.1);
 }
 
-/* Position and style the close button (top right corner) */
-.sidebar .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-
-/* The button used to open the sidebar */
-.openbtn {
-  cursor: pointer;
-  background-color: #0C6FAB;
-  color: white;
-  border: none;
-  margin-top: 175%;
-  margin-left: 3%;
-  font-family: Heebo !important;
-  border-radius: 10px;
-  vertical-align: middle;
-  font-size: 1.1em;
-  font-weight: 700;
-  padding: 3% 4% 0 4%;
-    transition: 0.5s;
-}
-.openbtn i {
-    display: block;
-    padding: 0;
-    margin: 0;
-}
-.openbtn:hover {
-  background-color: #1526D5;
-}
-
-/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-#main {
-  transition: margin-left .5s; /* If you want a transition effect */
-  padding: 20px;
-}
 /**PRECIOS**/
 
 
@@ -170,7 +138,7 @@ a.nav-link {
 }
 
 
-@media only screen and (max-width: 815px) {
+@media only screen and (max-width: 1024px) {
     .navbar {
         position: absolute !important;
         top: 0;
@@ -180,16 +148,22 @@ a.nav-link {
         z-index: 1;
     }
     .form-inline {
-        margin-left: 37%;
-        position: relative;
+        margin-left: 23%;
+        position: absolute;
         display: inline !important;
+    }
+    input.form-control {
+        margin-top: -15%;
+    }
+    button.btn-outline-dark {
+        margin-top: -15% !important;
     }
     #nav {
         position: absolute !important;
         top: 0;
         left: 0;
         width: 100%;  
-        height: 200px;
+        height: 80px;
         z-index: 1;
         margin-top: 200px;
     }
@@ -198,7 +172,7 @@ a.nav-link {
         transform: translateY(0);
     }
     .navimg {
-        margin-top: -40% !important;
+        margin-top: -17% !important;
         z-index: 1;
         position: absolute;
     }
@@ -206,31 +180,29 @@ a.nav-link {
         padding: 5% 0;
     }
     .signin {
-        margin-left: 15%;
-    }
-    .regis, .fa-shopping-cart {
-    margin-left: 0;
-    }
-    .fa-shopping-cart {
-        margin-right: 15%;
-    }
-    #precios {
-        margin-top: 550px;
-        margin-left: 0%;
-    }
-    .card {
-        width: 70%;
-        display: block;
-        margin: 3% auto;
-    }
-    .card-img-top {
-        width: 315.09px;
-        height: 306.92px;
-    }
-}
-@supports (-ms-ime-align: auto) {
-  
-    .form-inline {
         margin-left: 34%;
+        margin-top: -9%;
     }
+    .regis {
+         margin-left: 79%;
+         margin-top: -9%;
+    }
+    .cart {
+        margin-left: 123%;
+        margin-top: -5%;
+    }
+.closebtn {
+    visibility: visible;
 }
+.sidebar {
+  margin-top: 0;
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0;
+  left: 0;
+  background-color:  #44bd32; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.7s; /* 0.5 second transition effect to slide in the sidebar */

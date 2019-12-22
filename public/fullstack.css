@@ -288,7 +288,25 @@ div.color {
         padding: 2%;
     }
    
-} 
+}
+@media only screen and (max-width: 375px) {
+    img {
+        margin-left: -2% !important;
+    }
+    div.textblurred img {
+        margin-left: 1% !important;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    img {
+        width: 100%;
+        margin-left: 0% !important;
+    }
+    div.textblurred img {
+        margin-left: 0% !important;
+    }
+}
 @supports (-ms-ime-align: auto) {
     @media only screen and (max-width: 550px) {
     li.nav-item {

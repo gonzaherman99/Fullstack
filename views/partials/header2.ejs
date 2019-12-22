@@ -17,7 +17,10 @@
       <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
       <button class="btn btn-outline-dark my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
              <i class="fas fa-shopping-cart fa-lg fa-2x cart"></i>
-            <a type="singin" href="/login"><button class="btn btn-dark signin">Iniciar Sesion / Registrarse </button></a>
+            
+            <a class="btn btn-dark signin" href="/login" type="singin">Iniciar Sesion</a> 
+            
+            <a class="btn btn-dark regis" type="singin" href="/login">Registrarse </a>
          </form>
 
     </div>
@@ -26,25 +29,18 @@
     
     <section id="nav">
     
-     <a class="navbar-brand navimg" href="#">TECAF</a>
+    <a href="/"><img src="images/tecaf.jpg" class="navimg" width="145.2" height="102.8"></a>
 
   <div id="mySidebar" class="sidebar">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a class="nav-link" href="#">INICIO</a>
+  <a class="nav-link" href="/">INICIO</a>
   <a class="nav-link" href="/seccion-bisagras">BISAGRAS</a>
   <a  class="nav-link" href="/seccion-hule">ACCESORIOS DE HULE</a>
   <a class="nav-link" href="/seccion-cafe">INDUSTRIA DEL CAFE</a>
-<a class="nav-link" href="/seccion-cafe">CONTACTO</a>
   
 </div>
 
 <div id="main">
-    <button class="navbar-toggler openbtn"  type="button" data-toggle="collapse" aria-controls="navlist" aria-expanded="false" aria-label="Toggle navigation" onclick="openNav()" onclick="dissa();">
-        <span class="navbar-toggler-icon">
-             <div class="color"></div>
-                    <div class="color"></div>
-                    <div class="color"></div>
-        </span>
-    </button> 
+    <button class="openbtn" onclick="openNav()" onclick="dissa();"><i class="fas fa-arrow-right fa-2x"></i>MENU PRINCIPAL</button> 
 </div>
     </section>

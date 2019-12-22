@@ -36,7 +36,7 @@ app.use(session({
     secret: process.env.SECRET,
     resave: true,
     saveUninitialized: true,
-    cookie: { expires : new Date(Date.now() + 360000) }
+    cookie: { expires : new Date(Date.now() + 3600000) }
 }));
 
 
@@ -53,9 +53,8 @@ app.use(function(req, res, next) {
     if (new Date(session._expires) < new Date()) {
         console.log('User session has expired.');
         Order.deleteMany({session:  session1}, function(err, c) {
-         console.log("Order deleted");
       });
-        req.session.touch();
+       req.session.cookie.expires = new Date(Date.now() + 360000)
     } else {
         console.log("Not");
     }
@@ -86,6 +85,7 @@ const usersSchema = {
 const credentialsSchema = new mongoose.Schema ({
     username: String,
     password: String,
+    phone: Number,
     resetPasswordToken: String,
     resetPasswordExpires: Date
 });
@@ -136,15 +136,14 @@ app.get("/flash", function(req, res){
   res.redirect('/login');
 });
 
+var username1;
 
-
-app.get("/login", function( req, res) {
-    var t = req.session.passport;
-    if (t === undefined) {
-     req.flash("none", "");
-      res.render("login",{ message: req.flash("none") });
+app.get("/login", function(req, res) {
+    if(req.isAuthenticated()) {
+     res.redirect("/productos2");
     } else {
-        res.redirect("/productos2");
+        req.flash("none", "");
+      res.render("login",{ message: req.flash("none") });
     }
 });
 
@@ -188,25 +187,23 @@ app.post("/registrate1", function(req, res, next) {
     port: 465, //465
     secure: true, // true for 465, false for other ports
     auth: {
-      user: "lgonzaherman@gmail.com", 
+      user: "tecafserver@gmail.com", 
       pass: process.env.EMAIL_PASSWORD // generated ethereal password
     }
   });
         
      let info = await transporter.sendMail({
-    from: '<lgonzaherman@gmail.com>', // sender address
+    from: '<tecafserver@gmail.com>', // sender address
     to: '"' + toSend + '"', // list of receivers
-    subject: "Hello ✔", // Subject line
-    text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
-          'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+    subject: "TECAF Registro", // Subject line
+    text: 'Estas reciviendo este correo para registrar tu cuenta.\n\n' +
+          'Haz click en el  link, o pegalo en tu buscador para completar el proceso:\n\n' +
           'http://' + req.headers.host + '/registrate/' + token + '\n\n' +
-          'If you did not request this, please ignore this email and your password will remain unchanged.\n' // plain text body // html body
+          'Si tu, no haz iniciado este proceso, por favor contactanos al telefono +(502) 5324-2245.\n' // plain text body // html body
   });
     }
-  ], function(err) {
-    if (err) return next(err);
-    res.redirect("/registrate1");
-  });
+  ]);                   
+    res.redirect("/aviso2");
 });
 
 
@@ -222,9 +219,6 @@ app.get("/registrate/:token", function(req, res) {
 
 
 app.post("/registrate/:token", function(req, res, next) {
-    
-
-    
     async.waterfall([
     function(done) {
       User.findOne({ registerToken: req.params.token, registerExpires: { $gt: Date.now() } }, function(err, user) {
@@ -239,9 +233,10 @@ app.post("/registrate/:token", function(req, res, next) {
         Credential.register({username: username}, password, function(err, user){
         if(err) {
             console.log(err);
-            res.redirect("/registrate");
+            res.redirect("/registrate1");
         } else {
             passport.authenticate("local")(req, res, function() {
+                
                 res.redirect("/productos2");
             });
         }
@@ -255,15 +250,15 @@ app.post("/registrate/:token", function(req, res, next) {
     port: 465, //465
     secure: true, // true for 465, false for other ports
     auth: {
-      user: "lgonzaherman@gmail.com", 
+      user: "tecafserver@gmail.com", 
       pass: process.env.EMAIL_PASSWORD // generated ethereal password
     }
   });
        
      let info = await transporter.sendMail({
-    from: "<lgonzaherman@gmail.com>", // sender address
+    from: "<tecafserver@gmail.com>", // sender address
     to: '"' + user1.username + '"', // list of receivers
-    subject: "Hello ✔", // Subject line
+    subject: "Confirmacion de Registro", // Subject line
     text: "Felicidades ya estas registrado, ahora tienes accesso para ordenar" // plain text body // html body
   });
     }
@@ -274,6 +269,8 @@ app.post("/registrate/:token", function(req, res, next) {
    
     
     app.post("/login", function(req, res) {
+        
+     username1 = req.body.username;
         
      const user = new Credential ({
         username: req.body.username,
@@ -299,15 +296,15 @@ app.post("/registrate/:token", function(req, res, next) {
    });
 
 app.get("/logout", function(req, res){
-  req.logout();
-  res.redirect("/");
-     Order.deleteMany({session: session1}, function(err) {
+   Order.deleteMany({session: session1}, function(err) {
          if (err) {
              console.log(err)
          } else {
          console.log("order deleted");
          }
       });
+  req.logout();
+  res.redirect("/");
 });
 
 function checkO(para) {
@@ -329,16 +326,18 @@ app.get("/", function(req, res) {
 });
 
 app.get("/productos", function(req, res) {
-    if(req.session.passport === undefined) {
-            res.render("productos");
-        } else {
+    if(req.isAuthenticated()) {
             res.redirect("/productos2");
+        } else {
+             res.render("productos");
+    
         }
 });
 
 
 
 app.get("/productos2", function (req, res){
+    console.log(req.session);
     if(req.isAuthenticated()) {
     var str = req.session.passport;
     var str1 = JSON.stringify(str.user);
@@ -408,14 +407,14 @@ app.get("/rodos2", function(req, res) {
     }
 });
 
-app.get("/rodos3", function(req, res) {
+app.get("/rodos-sin-base", function(req, res) {
     if(req.isAuthenticated()) {  
          req.flash("none", "");
         if(req.session.passport === undefined) {
             res.redirect("/login");
         }
       Order.countDocuments({session: session1}, function(err, c) {
-         res.render("rodos3",{cart: c, message: req.flash("none")});
+         res.render("rodos-sin-base",{cart: c, message: req.flash("none")});
       });
     } else {
        res.redirect("/login");
@@ -644,9 +643,9 @@ app.get("/seccion-cafe", function(req, res) {
 });
 
 app.get("/seccion-cafe2", function(req, res) {
-     if(req.isAuthenticated()) { 
-         req.flash("none", "");
-         if (req.session.passport === undefined) {
+    if(req.isAuthenticated()) {
+        req.flash("none", "");
+        if (req.session.passport === undefined) {
         res.redirect("/login");
     } 
     Order.countDocuments({session: session1}, function(err, c) {
@@ -679,19 +678,37 @@ app.get("/forgot", function(req, res) {
     res.render("forgot"); 
 });
 
+app.get("/aviso2", function(req, res) {
+    res.render("aviso2"); 
+});
+
+app.get("/aviso", function(req, res) {
+     Order.deleteMany({session: session1}, function(err) {
+         if (err) {
+             console.log(err)
+         } else {
+         console.log("order deleted");
+         }
+      });
+    res.render("aviso"); 
+});
+
+app.get("/terminosYcondiciones", function(req, res) {
+    res.render("terminosYcondiciones");
+});
+
 var amount;
 
+
 app.get("/order", function(req, res) {
-    
-    var str = req.session.passport;
-    var str1 = JSON.stringify(str.user)
-    str1.replace(/['"]+/g, '');
-    
-    
+     if(req.isAuthenticated()) {
+    if (req.session.passport === undefined) {
+        res.redirect("/login");
+    } 
        
  Order.aggregate([
      
-     { $match: { session: str1 } },
+     { $match: { session: session1 } },
     { $group: {
         _id: null,
         totalAmount: { $sum: '$total' }
@@ -706,59 +723,128 @@ app.get("/order", function(req, res) {
                          console.log(doc);
                          amount = doc[0].totalAmount;
                          console.log(doc[0].totalAmount); 
-                         Order.find({session: str1 }, function(err, data) {
+                         Order.find({session: session1 }, function(err, data) {
                          res.render("order", {ordenItem: data, totalAmount: amount}); 
                        }); 
                          }
                   });
+     } else {
+       res.redirect("/login");
+    }
 });
 
 
 app.post("/order", function(req, res) {
     
-    Order.find({session: session1}, function(err, found) {
-        
-        const fo = found;
-        
-        // async..await is not allowed in global scope, must use a wrapper
- async function main(){
 
-  // create reusable transporter object using the default SMTP transport
-  let transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465, //465
-    secure: true, // true for 465, false for other ports
-    auth: {
-      user: "lgonzaherman@gmail.com", 
-      pass: "horatio1883" // generated ethereal password
+    
+     Order.aggregate([
+     
+     { $match: { session: session1 } },
+    { $group: {
+        _id: null,
+        totalAmount: { $sum: '$total' }
     }
-  });
+ }, {
+    $project: {
+        _id: 0
+    } }]).exec(function (err , doc) {
+       if (doc[0] === undefined) {
+             res.redirect("/productos2");
+       } else {
+              console.log(doc);
+              amount = doc[0].totalAmount;
+              console.log(doc[0].totalAmount); 
+              Order.find({session: session1 }, function(err, data) {
+                // async..await is not allowed in global scope, must use a wrapper
+                async function main(){
 
-  //send mail with defined transport object
-  let info = await transporter.sendMail({
-    from: '<lgonzaherman@gmail.com>', // sender address
-    to: "investlagh@hotmail.com", // list of receivers
-    subject: "Hello ✔", // Subject line
-    html: "<h3>" + fo.amount + "</h3>" +
-      "<h3>" + fo.name + "</h3>" +
-      "<h3>" + amount + "</h3>"
-            // plain text body // html body
-  });
-  
-}
-
-main().catch(console.error); 
-    });  
-    res.redirect("/productos2");
-    Order.delete({session: str1 }, function(err, res) {
-        if(err) {
-            console.log(err);
+                // create reusable transporter object using the default SMTP transport
+                let transporter = nodemailer.createTransport({
+                host: "smtp.gmail.com",
+                 port: 465, //465
+                secure: true, // true for 465, false for other ports
+                auth: {
+                 user: "tecafserver@gmail.com", 
+                 pass: process.env.EMAIL_PASSWORD // generated ethereal password
+              }
+            });
+                var amount = [];
+                data.forEach(function(item){
+                   amount.push(item.amount);
+                   amount.push(item.name);
+                  });
+                 //send mail with defined transport object
+                 let info = await transporter.sendMail({
+                  from: '<tecafserver@gmail.com>', // sender address
+                  to: '"' + username1 + '"', // list of receivers
+                  subject: "Orden PAPA!", // Subject line
+                  html: "<h3>" + amount + "</h3>" +
+                     "<h3>" + username1 + "</h3>"
+                 // plain text body // html body
+              });
+            }
+            main().catch(console.error); 
+         }); 
         }
-        console.log("Deleted order");
-    });
+        });
+
+  res.redirect("/aviso");
 });
 
 
+
+app.post("/bisagras", function(req, res) {
+   res.redirect("/login"); 
+});
+
+app.post("/bisbandera", function(req, res) {
+   res.redirect("/login"); 
+});
+
+app.post("/rodos", function(req, res) {
+   res.redirect("/login"); 
+});
+
+app.post("/poleas", function(req, res) {
+   res.redirect("/login"); 
+});
+
+app.post("/faja", function(req, res) {
+   res.redirect("/login"); 
+});
+
+app.post("/pichachas", function(req, res) {
+   res.redirect("/login"); 
+});
+
+app.post("/camisas", function(req, res) {
+   res.redirect("/login"); 
+});
+
+app.post("/sapos", function(req, res) {
+   res.redirect("/login"); 
+});
+
+app.post("/masillador", function(req, res) {
+   res.redirect("/login"); 
+});
+
+app.post("/destapador", function(req, res) {
+   res.redirect("/login"); 
+});
+
+app.post("/hule-cuadrado", function(req, res) {
+   res.redirect("/login"); 
+});
+
+app.post("/hule-redondo", function(req, res) {
+   res.redirect("/login"); 
+});
+
+app.post("/hule-rectangular", function(req, res) {
+   res.redirect("/login"); 
+});
 
 app.post("/cambio", function(req, res) {
     var inputValue = req.body.vote;
@@ -847,13 +933,13 @@ app.post("/rodos2",  function(req, res) {
     }
 });
 
-app.post("/rodos3", function(req, res) {
+app.post("/rodos-sin-base", function(req, res) {
     var inputValue = req.body.vote;
     if (inputValue == "add") { 
     if (req.body.option === "" || productName === undefined ) {
         req.flash("number", "No elegiste tu producto o una cantidad");
          Order.countDocuments({session: session1}, function(err, c) {
-        res.render("rodos3", {cart: c, message: req.flash("number") });
+        res.render("rodos-sin-base", {cart: c, message: req.flash("number") });
          }); 
         } else {
     var cantidad = req.body.option;
@@ -869,7 +955,7 @@ app.post("/rodos3", function(req, res) {
     });
      order.save();    
     console.log(order); 
-    res.redirect("/rodos3");
+    res.redirect("/rodos-sin-base");
         }
     }
 });
@@ -1214,19 +1300,19 @@ app.post("/forgot", function(req, res, next) {
     port: 465, //465
     secure: true, // true for 465, false for other ports
     auth: {
-      user: "lgonzaherman@gmail.com", 
-      pass: "horatio1883" // generated ethereal password
+      user: "tecafserver@gmail.com", 
+      pass: process.env.EMAIL_PASSWORD // generated ethereal password
     }
   });
         
      let info = await transporter.sendMail({
-    from: '<lgonzaherman@gmail.com>', // sender address
+    from: '<tecafserver@gmail.com>', // sender address
     to: '"' + req.body.username + '"', // list of receivers
-    subject: "Hello ✔", // Subject line
-    text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
-          'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+    subject: "Cambio de Contraseña", // Subject line
+    text: 'Estas reciviendo este correo por que tu (o alguien mas) a iniciado el proceso para el cambio de contraseña.\n\n' +
+          'Haz click en el siguiente link, o pegalo en tu  buscador para completar el proceso:\n\n' +
           'http://' + req.headers.host + '/reset/' + token + '\n\n' +
-          'If you did not request this, please ignore this email and your password will remain unchanged.\n' // plain text body // html body
+          'Si no haz iniciado el proceso, por favor contactanos a +(502) 5323-2245\n' // plain text body // html body
   });
     }
   ], function(err) {
@@ -1284,13 +1370,13 @@ app.post("/reset/:token", function(req, res, next) {
     port: 465, //465
     secure: true, // true for 465, false for other ports
     auth: {
-      user: "lgonzaherman@gmail.com", 
-      pass: "horatio1883" // generated ethereal password
+      user: "tecafserver@gmail.com", 
+      pass: process.env.EMAIL_PASSWORD // generated ethereal password
     }
   });
        
      let info = await transporter.sendMail({
-    from: "<lgonzaherman@gmail.com>", // sender address
+    from: "<tecafserver@gmail.com>", // sender address
     to: '"' + user1.username + '"', // list of receivers
     subject: "Hello ✔", // Subject line
     text: 'This is a confirmation that the password for your account' + user1.username + 'has just been changed.\n' // plain text body // html body
