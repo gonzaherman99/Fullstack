@@ -150,7 +150,8 @@ app.get("/login", function(req, res) {
 
 
 app.get("/registrate1", function(req, res) {
-    res.render("registrate1");
+     req.flash("mal", "");
+    res.render("registrate1", {mes: req.flash("mal")});
 });
 
 
@@ -165,11 +166,11 @@ app.post("/registrate1", function(req, res, next) {
     },
     function(token, done) {
       User.findOne({ user: req.body.user }, function(err, user) {
-        if (!user) {
-          req.flash('error', 'No account with that email address exists.');
-          return res.redirect('/registrate1');
-          console.log(err);
-        }
+
+        if (user === null) {
+             req.flash("malo", "Usuario incorrecto o no registrado, llamenos al telefono en esta pagina");
+           res.render("registrate1", {mes: req.flash("malo")});
+        } else {
 
         toSend = user.user;
           
@@ -179,6 +180,7 @@ app.post("/registrate1", function(req, res, next) {
         user.save(function(err) {
           done(err, token, user);
         });
+        }
       });
     },
    async function(token, user, done) {
@@ -201,8 +203,11 @@ app.post("/registrate1", function(req, res, next) {
           'http://' + req.headers.host + '/registrate/' + token + '\n\n' +
           'Si tu, no haz iniciado este proceso, por favor contactanos al telefono +(502) 5324-2245.\n' // plain text body // html body
   });
-    }
-  ]);                   
+   }
+  ],
+  function(err) {
+    console.log(err);
+  });
     res.redirect("/aviso2");
 });
 
@@ -213,7 +218,8 @@ app.get("/registrate/:token", function(req, res) {
       req.flash("error", "Password reset token is invalid or has expired.");
       return res.redirect("/registrate1");
     }
-    res.render("registrate");
+     req.flash("malo", "");
+    res.render("registrate", {mes: req.flash("malo")});
   });
 });
 
@@ -222,26 +228,31 @@ app.post("/registrate/:token", function(req, res, next) {
     async.waterfall([
     function(done) {
       User.findOne({ registerToken: req.params.token, registerExpires: { $gt: Date.now() } }, function(err, user) {
-        if (!user) {
-          req.flash("error", "Password reset token is invalid or has expired.");
-          return res.redirect("back");
-        } 
           
            let username = req.body.username; 
            let password = req.body.password;
+           let password2 = req.body.password2;
           
-        Credential.register({username: username}, password, function(err, user){
+          console.log(req.body.password2);
+            console.log(user.user);
+          
+        if (req.body.username === user.user && req.body.password === req.body.password2) {
+            
+             Credential.register({username: username}, password, function(err, user){
         if(err) {
             console.log(err);
             res.redirect("/registrate1");
         } else {
             passport.authenticate("local")(req, res, function() {
-                
                 res.redirect("/productos2");
             });
         }
      });
-          
+           
+        } else {
+            req.flash("malo", "Contraseña no concuerda");
+           res.render("registrate", {mes: req.flash("malo")});
+        }
       });
     },
    async function(token, user, done) {
@@ -279,15 +290,17 @@ app.post("/registrate/:token", function(req, res, next) {
     
     Credential.findOne({username: req.body.username}, function(err, found) {
         if (found === null) {
-            req.flash("info", "Email o Contraseña incorrecta");
-            res.render("login", { message: req.flash("info") });
+        req.flash("malo", "Usuario o contraseña incorrecta");
+        res.render("login", {message: req.flash("malo") });
         } else {
             req.login(user, function(err) {
                 if (err) {
                     console.log(err);
                  } else {
                      passport.authenticate("local")(req, res, function(err) {
+                        
                      res.redirect("/productos2");
+                         
                 });
               }
            });
@@ -777,7 +790,7 @@ app.post("/order", function(req, res) {
                  //send mail with defined transport object
                  let info = await transporter.sendMail({
                   from: '<tecafserver@gmail.com>', // sender address
-                  to: '"' + username1 + '"', // list of receivers
+                  to: "investlagh@hotmail.com", // list of receivers
                   subject: "Orden PAPA!", // Subject line
                   html: "<h3>" + amount + "</h3>" +
                      "<h3>" + username1 + "</h3>"

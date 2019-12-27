@@ -124,6 +124,20 @@ div.notice h3{
     color: yellow;
     font-family: "Heebo";
 }
+#message {
+    text-align: center;
+    width: 80%;
+    display: block;
+    margin: auto;
+    padding: 5px;
+    border-radius: 6px;
+    color: rgba(0,0,0,0.5);
+    margin-bottom: 9px;
+}
+h5#message {
+    color: red !important;
+    color: rgba(0,0,0,0.7);
+}
 /*FOOTER*/
 #footer {
 	padding: 2%;
