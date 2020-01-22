@@ -169,9 +169,10 @@ app.post("/registrate1", function(req, res, next) {
 
         if (user === null) {
              req.flash("malo", "Usuario incorrecto o no registrado, llamenos al telefono en esta pagina");
-           res.render("registrate1", {mes: req.flash("malo")});
+             res.render("registrate1", {mes: req.flash("malo")});
         } else {
-
+             res.redirect("/aviso2");
+            
         toSend = user.user;
           
         user.registerToken = token;
@@ -208,7 +209,6 @@ app.post("/registrate1", function(req, res, next) {
   function(err) {
     console.log(err);
   });
-    res.redirect("/aviso2");
 });
 
 
@@ -289,16 +289,20 @@ app.post("/registrate/:token", function(req, res, next) {
     });
     
     Credential.findOne({username: req.body.username}, function(err, found) {
-        if (found === null) {
-        req.flash("malo", "Usuario o contraseña incorrecta");
-        res.render("login", {message: req.flash("malo") });
+        if (err) {
+            console.log(err);
+        }
+        if (found === null || found.password === undefined) {
+        req.flash("malos", "Usuario o contraseña incorrecta");
+        res.render("login", {message: req.flash("malos") });
         } else {
             req.login(user, function(err) {
+                console.log(user);
                 if (err) {
                     console.log(err);
                  } else {
                      passport.authenticate("local")(req, res, function(err) {
-                        
+            
                      res.redirect("/productos2");
                          
                 });
